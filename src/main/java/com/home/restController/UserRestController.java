@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.home.model.Hospital;
-import com.home.model.User;
+import com.home.model.Users;
 import com.home.repository.HospitalRepo;
 import com.home.repository.UserRepository;
 
@@ -36,14 +36,14 @@ public class UserRestController {
 	
 	
 	@GetMapping("/api/user/list")
-	public List<User> getAllUser()
+	public List<Users> getAllUser()
 	{
 		return urepo.findAll();
 		
 	}
 	
 	@PostMapping("/api/user/login")
-	public Integer loginInfo(@RequestBody User u)
+	public Integer loginInfo(@RequestBody Users u)
 	{
 		
 		u.setPassword(DigestUtils.md5DigestAsHex(u.getPassword().getBytes()));
@@ -71,7 +71,7 @@ public class UserRestController {
 			
 	
 	@PostMapping("/api/user/register")
-	public String addUser(@RequestBody User u)
+	public String addUser(@RequestBody Users u)
 	{
 		
 		u.setPassword(DigestUtils.md5DigestAsHex(u.getPassword().getBytes()));
@@ -84,7 +84,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/api/user/hospregister")
-	public Integer addHospUser(@RequestBody User u)
+	public Integer addHospUser(@RequestBody Users u)
 	{
 		
 		u.setPassword(DigestUtils.md5DigestAsHex(u.getPassword().getBytes()));
